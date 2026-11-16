@@ -1,0 +1,12 @@
+# Dependencies and build output
+node_modules/
+dist/
+*.zip
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+*.log
+
+# Local-only Claude settings (launch.json is shared on purpose)
+.claude/settings.local.json

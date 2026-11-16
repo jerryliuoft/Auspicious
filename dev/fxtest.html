@@ -1,0 +1,22 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>FX test</title>
+<!-- Dev only: fires a burst, then records particle positions over time into #log. -->
+<div id="host" style="position:relative;width:400px;height:596px;background:#fff"></div>
+<pre id="log"></pre>
+<link rel="stylesheet" href="../styles/fortune.css">
+<script type="module">
+  import { burst } from '../lib/fx.js';
+  const host = document.getElementById('host');
+  burst(host, 200, 150, { kind: 'confetti', count: 6 });
+  const log = document.getElementById('log');
+  for (const ms of [50, 300, 700]) {
+    setTimeout(() => {
+      const ps = [...host.querySelectorAll('.fx-p')].slice(0, 3).map((p) => {
+        const r = p.getBoundingClientRect();
+        return `${Math.round(r.left)},${Math.round(r.top)}`;
+      });
+      log.textContent += `${ms}ms: ${ps.join(' | ')}\n`;
+    }, ms);
+  }
+</script>

@@ -1,0 +1,68 @@
+/* Auspicious — editorial design tokens. */
+:root {
+  color-scheme: light dark;
+  --bg: #f4f3ef;
+  --card: #ffffff;
+  --ink: #18181a;
+  --ink-2: #55555a;
+  --ink-3: #8a8a8f;
+  --line: rgba(20, 20, 25, 0.10);
+  --line-2: rgba(20, 20, 25, 0.20);
+  --wash: rgba(20, 20, 25, 0.04);
+  --accent-good: #b4232a;
+  --accent-neutral: #8a6a2f;
+  --accent-bad: #3f5068;
+  --accent: var(--accent-good);
+  --positive: #2f7a4f;
+  --warn: #b45309;
+  --focus: #2563eb;
+  --serif: ui-serif, "Iowan Old Style", "Sitka Display", "Sitka Text", Charter, Cambria, Georgia, serif;
+  --sans: "Inter", ui-sans-serif, "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --han: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  --display: "Inter Display", "Inter", "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --han-sans: "PingFang SC", "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111113;
+    --card: #1a1a1d;
+    --ink: #f2f1ec;
+    --ink-2: #b6b5b0;
+    --ink-3: #7e7d79;
+    --line: rgba(255, 255, 255, 0.10);
+    --line-2: rgba(255, 255, 255, 0.20);
+    --wash: rgba(255, 255, 255, 0.05);
+    --accent-good: #e5736b;
+    --accent-neutral: #d4ad66;
+    --accent-bad: #97aac6;
+    --focus: #7aa7ff;
+    --positive: #7cc79a;
+    --warn: #f0a557;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111113;
+  --card: #1a1a1d;
+  --ink: #f2f1ec;
+  --ink-2: #b6b5b0;
+  --ink-3: #7e7d79;
+  --line: rgba(255, 255, 255, 0.10);
+  --line-2: rgba(255, 255, 255, 0.20);
+  --wash: rgba(255, 255, 255, 0.05);
+  --accent-good: #e5736b;
+  --accent-neutral: #d4ad66;
+  --accent-bad: #97aac6;
+  --focus: #7aa7ff;
+  --positive: #7cc79a;
+  --warn: #f0a557;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+[hidden] { display: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0ms !important; transition-duration: 0.01ms !important; }
+}

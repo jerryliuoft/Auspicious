@@ -1,0 +1,31 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Seed preview</title>
+<!-- Dev only (not part of the extension UI): seeds a test profile into localStorage for
+     previewing pages over http://localhost, then forwards to the page in ?to=. -->
+<script>
+  const p = new URLSearchParams(location.search);
+  const profile = {
+    birthDate: p.get('birth') || '1990-07-15', birthTime: '', role: p.get('role') || 'engineer',
+    workStart: '09:00', workEnd: '18:00', workDays: [1, 2, 3, 4, 5],
+    focus: p.get('focus') || 'launch', desk: 'South', tone: p.get('tone') || 'traditional',
+    location: p.get('lat') ? { name: p.get('city') || 'Test city', admin1: '', country: '', lat: Number(p.get('lat')), lon: Number(p.get('lon')) } : null,
+  };
+  localStorage.setItem('auspicious.settings', JSON.stringify({ autoShow: true, displaySeconds: 8, sound: true, units: p.get('units') || 'c' }));
+  localStorage.removeItem('auspicious.weatherCache');
+  localStorage.setItem('auspicious.profile', JSON.stringify(profile));
+  if (p.get('torn')) localStorage.setItem('auspicious.tornOn', JSON.stringify(p.get('torn')));
+  else localStorage.removeItem('auspicious.tornOn');
+  localStorage.removeItem('auspicious.remedyChecks');
+  // ?ics=../tests/fixtures/sample.ics connects a calendar file (same-origin in previews).
+  localStorage.removeItem('auspicious.calCache');
+  if (p.get('ics')) localStorage.setItem('auspicious.calendar', JSON.stringify({ url: new URL(p.get('ics'), location.href).href }));
+  else localStorage.removeItem('auspicious.calendar');
+  // ?sleep=poor&sd=2026-11-17 records a sleep check-in for that date.
+  if (p.get('sleep')) localStorage.setItem('auspicious.sleep', JSON.stringify({ date: p.get('sd'), q: p.get('sleep') }));
+  else localStorage.removeItem('auspicious.sleep');
+  // ?hist=2026-11-14,2026-11-15 seeds previously turned days (for streak testing).
+  if (p.get('hist')) localStorage.setItem('auspicious.history', JSON.stringify(p.get('hist').split(',')));
+  else localStorage.removeItem('auspicious.history');
+  location.replace('../' + (p.get('to') || 'fortune.html'));
+</script>

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Auspicious Settings</title>
+  <link rel="stylesheet" href="styles/theme.css">
+  <link rel="stylesheet" href="styles/settings.css">
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <div class="wordmark" aria-hidden="true"><span>吉</span>Auspicious</div>
+      <div>
+        <h1 id="title">Set up your almanac</h1>
+        <p class="lede" id="lede">A few details make each day's page yours. Everything stays on this computer.</p>
+      </div>
+    </header>
+
+    <form id="form" novalidate>
+      <section class="card">
+        <h2><span class="num">01</span> Your birth</h2>
+        <p class="hint">Your birth date gives your zodiac animal and your day-master element. Together they decide which days help you and which clash with you.</p>
+        <div class="row">
+          <label class="field">
+            <span>Birth date <em>required</em></span>
+            <input type="date" id="birthDate" required min="1920-01-01">
+          </label>
+          <label class="field">
+            <span>Birth time <em>optional</em></span>
+            <input type="time" id="birthTime">
+          </label>
+        </div>
+        <p class="hint small">Birth time sharpens your lucky hours. Leave it empty if you don't know it.</p>
+        <div class="chart-preview" id="chartPreview" hidden></div>
+      </section>
+
+      <section class="card">
+        <h2><span class="num">02</span> Your work</h2>
+        <fieldset class="field">
+          <legend>What best describes your work?</legend>
+          <div class="tiles" id="roleTiles"></div>
+        </fieldset>
+        <div class="row">
+          <label class="field">
+            <span>Workday starts</span>
+            <input type="time" id="workStart" value="09:00" step="3600">
+          </label>
+          <label class="field">
+            <span>Workday ends</span>
+            <input type="time" id="workEnd" value="18:00" step="3600">
+          </label>
+        </div>
+        <fieldset class="field">
+          <legend>Work days</legend>
+          <div class="chips" id="dayChips"></div>
+        </fieldset>
+        <fieldset class="field">
+          <legend>When are you sharpest?</legend>
+          <div class="tiles tone" id="chronoTiles"></div>
+        </fieldset>
+        <label class="field">
+          <span>Usual wake-up time <em>optional</em></span>
+          <input type="time" id="wakeTime">
+        </label>
+        <p class="hint small">These shape your daily Energy forecast: when you'll peak, when you'll dip, and when each suggestion fits best.</p>
+        <label class="field">
+          <span>Current focus</span>
+          <select id="focus"></select>
+        </label>
+      </section>
+
+      <section class="card">
+        <h2><span class="num">03</span> Your desk &amp; style</h2>
+        <label class="field">
+          <span>Which way does your desk face? <em>optional</em></span>
+          <select id="desk"><option value="">I'm not sure</option></select>
+        </label>
+        <fieldset class="field">
+          <legend>How should your fortune speak?</legend>
+          <div class="tiles tone" id="toneTiles"></div>
+        </fieldset>
+      </section>
+
+      <section class="card">
+        <h2><span class="num">04</span> Where you are</h2>
+        <p class="hint">Real conditions come first. Your local weather can lift or lower the almanac's reading and changes the advice: a clear day might mean a walk at lunch, a stormy one a day at home.</p>
+        <div class="field">
+          <span>Your city <em>optional</em></span>
+          <div class="city-row">
+            <input type="search" id="cityInput" placeholder="Seattle" autocomplete="off" aria-describedby="cityStatus">
+            <button type="button" class="secondary" id="citySearch">Search</button>
+          </div>
+          <p class="city-status" id="cityStatus" role="status"></p>
+          <div class="city-results" id="cityResults"></div>
+        </div>
+        <div class="row">
+          <label class="field">
+            <span>Temperature</span>
+            <select id="units"><option value="c">Celsius (°C)</option><option value="f">Fahrenheit (°F)</option></select>
+          </label>
+        </div>
+        <p class="hint small">Weather comes from Open-Meteo. Only your city's rounded coordinates are sent, nothing else.</p>
+      </section>
+
+      <section class="card">
+        <h2><span class="num">05</span> Your calendar</h2>
+        <p class="hint">Connect your work calendar and each page lines up your meetings with the day: which land in good or careful hours, which go against today's guidance, and where your best focus time is.</p>
+        <div class="field">
+          <span>Private calendar link (iCal / ICS) <em>optional</em></span>
+          <div class="city-row">
+            <input type="url" id="icsInput" placeholder="https://calendar.google.com/calendar/ical/…/basic.ics" autocomplete="off" spellcheck="false" aria-describedby="icsStatus">
+            <button type="button" class="secondary" id="icsConnect">Connect</button>
+          </div>
+          <p class="city-status" id="icsStatus" role="status"></p>
+        </div>
+        <details class="howto">
+          <summary>Where do I find this link?</summary>
+          <ul>
+            <li><b>Google Calendar:</b> Settings → pick your calendar under “Settings for my calendars” → Integrate calendar → copy <i>Secret address in iCal format</i>.</li>
+            <li><b>Outlook / Microsoft 365:</b> Settings → Calendar → Shared calendars → Publish a calendar → choose “Can view all details” → copy the <i>ICS</i> link.</li>
+            <li><b>Apple iCloud:</b> Calendar app → share the calendar as a Public Calendar → copy the <i>webcal://</i> link.</li>
+          </ul>
+        </details>
+        <p class="hint small">The link and your event titles stay in this browser. Chrome will ask once for permission to read your calendar provider's site. Treat the link like a password: anyone with it can see your calendar.</p>
+      </section>
+
+      <section class="card">
+        <h2><span class="num">06</span> Daily page</h2>
+        <label class="toggle">
+          <input type="checkbox" id="autoShow" checked>
+          <span>Pop up today's page in the first Chrome window of the day</span>
+        </label>
+        <label class="field">
+          <span>Keep it on screen for <strong id="secondsOut">8</strong> seconds <em>(hover to pause, click to keep it open)</em></span>
+          <input type="range" id="displaySeconds" min="4" max="15" step="1" value="8">
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="sound" checked>
+          <span>Paper and seal sounds</span>
+        </label>
+      </section>
+
+      <div class="actions">
+        <p class="privacy">Saved only in this browser. Nothing is sent anywhere.</p>
+        <button type="submit" class="primary" id="saveBtn">Seal my almanac</button>
+      </div>
+      <p class="error" id="error" role="alert"></p>
+    </form>
+
+    <section class="card done" id="done" hidden>
+      <h2>Your almanac is ready</h2>
+      <p>Pin <strong>Auspicious</strong> to your toolbar (click the puzzle-piece icon, then the pin). A new page will be waiting each morning.</p>
+      <a class="primary" href="fortune.html?mode=tab" id="tearLink">Turn to today's page</a>
+    </section>
+  </main>
+  <script type="module" src="settings.js"></script>
+</body>
+</html>

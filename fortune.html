@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Auspicious</title>
+  <link rel="stylesheet" href="styles/theme.css">
+  <link rel="stylesheet" href="styles/fortune.css">
+  <link rel="stylesheet" href="styles/shrine.css">
+</head>
+<body>
+  <div class="stage" id="stage">
+    <div class="card" id="card">
+      <article class="sheet today" id="today" aria-live="polite"></article>
+      <article class="sheet cover" id="cover"></article>
+      <div class="autoclose" id="autoclose" hidden>
+        <span class="autoclose-fill" id="autocloseFill"></span>
+        <span class="autoclose-label" id="autocloseLabel"></span>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="fortune.js"></script>
+</body>
+</html>
