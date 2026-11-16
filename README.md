@@ -2,6 +2,8 @@
 
 A Chrome extension inspired by the Chinese tear-off almanac (黄历 / Tong Shu), redesigned as a modern editorial desk card. It shows one page a day: a personalized **work fortune**, what the day is good for (宜) and what to avoid (忌), your lucky hour, color and direction, and **remedies (化解)** to ease unlucky days.
 
+> **Privacy:** Auspicious collects nothing. No accounts, no analytics, no tracking. Your details stay in your browser; the only outside requests are to a weather service and your own calendar, and only if you turn those on. See [PRIVACY.md](PRIVACY.md).
+
 ## Install (developer mode)
 
 1. Open `chrome://extensions` and switch on **Developer mode** (top right).
