@@ -130,3 +130,7 @@ Preview pages without installing: serve the folder (`python dev/serve.py 8765`, 
 `date=YYYY-MM-DD` (preview another day), `auto=1` (startup behavior with auto-tear and auto-close),
 `reset=1` (un-turn today), `mode=tab|window`, `nofx=1` (no particles). On `dev/seed.html`: `hist=2026-11-15,2026-11-16`
 (previously turned days, for streaks), `lat`/`lon`/`city` (test location), `units=f`. `dev/fxtest.html` logs particle motion.
+
+## License
+
+[MIT](LICENSE) © 2026 Jerry Li. The original Chinese classical texts quoted in `lib/wisdom.js` are in the public domain; the English renderings are original to this project and covered by the same license.
